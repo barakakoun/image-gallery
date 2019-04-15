@@ -10,16 +10,13 @@ export default class ImageSearchBar extends React.Component {
     this.state = {
       searchText: ""
     };
-
-    this.triggerChange = this.triggerChange.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillMount() {
     this.timer = null;
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     // If user pressed a new key- we want to start the timeout again
     clearTimeout(this.timer);
 
@@ -29,15 +26,13 @@ export default class ImageSearchBar extends React.Component {
     this.timer = setTimeout(this.triggerChange, WAIT_INTERVAL);
   }
 
-  triggerChange() {
+  triggerChange = () => {
     const { searchText } = this.state;
 
     this.props.updateSearch(searchText);
   }
 
   render() {
-    // const { searchText } = this.state;
-
     return (
       <div>
         <Button
@@ -47,7 +42,9 @@ export default class ImageSearchBar extends React.Component {
         >
           Clear History
         </Button>
+
         <h3>Image Gallery</h3>
+        
         <input
           type="text"
           value={this.state.searchText}
@@ -59,6 +56,8 @@ export default class ImageSearchBar extends React.Component {
             <option key={i} value={item} />
           ))}
         </datalist>
+
+        
       </div>
     );
   }
