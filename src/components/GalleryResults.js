@@ -8,7 +8,7 @@ export default class GalleryResults extends React.Component {
         {// Runningover all the results and add them as a photo item
         images.map((photoItem, i) => {
           let url = `https://farm${photoItem.farm}.staticflickr.com/${photoItem.server}/${photoItem.id}_${photoItem.secret}_q.jpg`;
-          return <img style={img} key ={i} src={url} />;
+          return <img style={img} key ={i} src={url} alt={photoItem.id} />;
         })}
       </div>
     );

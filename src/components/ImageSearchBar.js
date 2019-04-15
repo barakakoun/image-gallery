@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 
 // Half a second waiting between fetching the search
 const WAIT_INTERVAL = 500;
@@ -39,12 +40,25 @@ export default class ImageSearchBar extends React.Component {
 
     return (
       <div>
+        <Button
+          variant="primary"
+          style={{ position: "absolute", left: "5px", top: "5px" }}
+          onClick={()=> this.props.clearSearchHistory()}
+        >
+          Clear History
+        </Button>
         <h3>Image Gallery</h3>
         <input
           type="text"
           value={this.state.searchText}
           onChange={this.handleChange}
+          list="history"
         />
+        <datalist id="history">
+          {this.props.historyList.map((item, i) => (
+            <option key={i} value={item} />
+          ))}
+        </datalist>
       </div>
     );
   }
